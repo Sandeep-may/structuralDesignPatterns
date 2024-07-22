@@ -7,12 +7,19 @@ import com.codewithmosh.adapter.VividFilter;
 import com.codewithmosh.adapter.avaFilters.Caramel;
 import com.codewithmosh.composite.Group;
 import com.codewithmosh.composite.Shape;
+import com.codewithmosh.decorator.CloudStream;
+import com.codewithmosh.decorator.EncryptedCloudStream;
+import com.codewithmosh.decorator.Stream;
 
 public class Main {
     public static void main(String[] args) {
+        //----decorator pattern----
+        storeCreditCard(new EncryptedCloudStream(new CloudStream()));
+//        var cloudStream = new EncryptedCloudStream();
+//        cloudStream.write("some data");
         //----adapter pattern----
-        var imageView = new ImageView(new Image());
-        imageView.apply(new CaramelFilter(new Caramel()));
+//        var imageView = new ImageView(new Image());
+//        imageView.apply(new CaramelFilter(new Caramel()));
         //----composite pattern----
 //        var group1 = new Group();
 //        group1.add(new Shape()); // square
@@ -27,5 +34,9 @@ public class Main {
 //        group.add(group2);
 //        group.render();
 //        group.move();
+    }
+
+    public static void storeCreditCard(Stream stream) {
+        stream.write("1234-1234-1234-1234");
     }
 }
