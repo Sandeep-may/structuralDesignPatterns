@@ -13,12 +13,18 @@ import com.codewithmosh.decorator.Stream;
 import com.codewithmosh.facade.Message;
 import com.codewithmosh.facade.NotificationServer;
 import com.codewithmosh.facade.NotificationService;
+import com.codewithmosh.flyweight.PointIconFactory;
+import com.codewithmosh.flyweight.PointService;
 
 public class Main {
     public static void main(String[] args) {
+        //----flyweight pattern----
+        var service = new PointService(new PointIconFactory());
+        for (var point : service.getPoints())
+            point.draw();
         //----facade pattern----
-        var service = new NotificationService();
-        service.send("Hello World", "target");
+//        var service = new NotificationService();
+//        service.send("Hello World", "target");
         //----decorator pattern----
 //        storeCreditCard(new EncryptedCloudStream(new CloudStream()));
 //        var cloudStream = new EncryptedCloudStream();
