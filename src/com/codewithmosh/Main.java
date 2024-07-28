@@ -5,6 +5,9 @@ import com.codewithmosh.adapter.Image;
 import com.codewithmosh.adapter.ImageView;
 import com.codewithmosh.adapter.VividFilter;
 import com.codewithmosh.adapter.avaFilters.Caramel;
+import com.codewithmosh.bridge.RemoteControl;
+import com.codewithmosh.bridge.SamsungTV;
+import com.codewithmosh.bridge.SonyTV;
 import com.codewithmosh.composite.Group;
 import com.codewithmosh.composite.Shape;
 import com.codewithmosh.decorator.CloudStream;
@@ -18,10 +21,13 @@ import com.codewithmosh.flyweight.PointService;
 
 public class Main {
     public static void main(String[] args) {
+        //----bridge pattern----
+        var remoteControl = new RemoteControl(new SamsungTV());
+        remoteControl.turnOn();
         //----flyweight pattern----
-        var service = new PointService(new PointIconFactory());
-        for (var point : service.getPoints())
-            point.draw();
+//        var service = new PointService(new PointIconFactory());
+//        for (var point : service.getPoints())
+//            point.draw();
         //----facade pattern----
 //        var service = new NotificationService();
 //        service.send("Hello World", "target");
