@@ -10,11 +10,17 @@ import com.codewithmosh.composite.Shape;
 import com.codewithmosh.decorator.CloudStream;
 import com.codewithmosh.decorator.EncryptedCloudStream;
 import com.codewithmosh.decorator.Stream;
+import com.codewithmosh.facade.Message;
+import com.codewithmosh.facade.NotificationServer;
+import com.codewithmosh.facade.NotificationService;
 
 public class Main {
     public static void main(String[] args) {
+        //----facade pattern----
+        var service = new NotificationService();
+        service.send("Hello World", "target");
         //----decorator pattern----
-        storeCreditCard(new EncryptedCloudStream(new CloudStream()));
+//        storeCreditCard(new EncryptedCloudStream(new CloudStream()));
 //        var cloudStream = new EncryptedCloudStream();
 //        cloudStream.write("some data");
         //----adapter pattern----
