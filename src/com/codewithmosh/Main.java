@@ -1,29 +1,23 @@
 package com.codewithmosh;
 
-import com.codewithmosh.adapter.CaramelFilter;
-import com.codewithmosh.adapter.Image;
-import com.codewithmosh.adapter.ImageView;
-import com.codewithmosh.adapter.VividFilter;
-import com.codewithmosh.adapter.avaFilters.Caramel;
-import com.codewithmosh.bridge.RemoteControl;
-import com.codewithmosh.bridge.SamsungTV;
-import com.codewithmosh.bridge.SonyTV;
-import com.codewithmosh.composite.Group;
-import com.codewithmosh.composite.Shape;
-import com.codewithmosh.decorator.CloudStream;
-import com.codewithmosh.decorator.EncryptedCloudStream;
 import com.codewithmosh.decorator.Stream;
-import com.codewithmosh.facade.Message;
-import com.codewithmosh.facade.NotificationServer;
-import com.codewithmosh.facade.NotificationService;
-import com.codewithmosh.flyweight.PointIconFactory;
-import com.codewithmosh.flyweight.PointService;
+import com.codewithmosh.proxy.EbookProxy;
+import com.codewithmosh.proxy.Library;
+import com.codewithmosh.proxy.LoggingEbookProxy;
+import com.codewithmosh.proxy.RealEbook;
 
 public class Main {
     public static void main(String[] args) {
-        //----bridge pattern----
-        var remoteControl = new RemoteControl(new SamsungTV());
-        remoteControl.turnOn();
+        //----proxy pattern----
+        var library = new Library();
+        String[] fileNames = {"a", "b", "c"};
+        for (var fileName : fileNames)
+            library.add(new LoggingEbookProxy(fileName));
+
+        library.openEbook("a");
+//        //----bridge pattern----
+//        var remoteControl = new RemoteControl(new SamsungTV());
+//        remoteControl.turnOn();
         //----flyweight pattern----
 //        var service = new PointService(new PointIconFactory());
 //        for (var point : service.getPoints())
